@@ -34,17 +34,17 @@ providers:
     version: v0
     spec:
       verbose: false
-      remoteuser: orbiter
-      remotepublickeypath: /home/orbiter/.ssh/authorized_keys
+      remoteuser: root
+      remotepublickeypath: /home/root/.ssh/authorized_keys
       pools:
         masters:
         - id: first
           hostname: master01
-          ip: 172.17.0.2
+          ip: 10.10.10.195
         workers:
         - id: second
           hostname: worker01
-          ip: 172.17.0.3
+          ip: 10.10.10.196
       keys:
         bootstrapkeyprivate:
           encryption: AES256
