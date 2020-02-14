@@ -40,11 +40,11 @@ providers:
         masters:
         - id: first
           hostname: master01
-          ip: 10.10.10.195
+          ip: 10.10.10.197
         workers:
         - id: second
           hostname: worker01
-          ip: 10.10.10.196
+          ip: 10.10.10.198
       keys:
         bootstrapkeyprivate:
           encryption: AES256
