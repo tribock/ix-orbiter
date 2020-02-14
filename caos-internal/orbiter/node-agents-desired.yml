@@ -97,10 +97,3 @@ spec:
         kubelet:
           port: "10250"
           protocol: tcp
-    second:
-      changesallowed: false
-      software:
-        hostname:
-          config:
-            hostname: worker01
-      firewall: null
