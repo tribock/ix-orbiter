@@ -1,45 +1,58 @@
 kind: orbiter.caos.ch/Orb
 version: v0
+spec:
+  verbose: false
 clusters:
   k8s:
     kind: orbiter.caos.ch/KubernetesCluster
     version: v0
     spec:
       controlplane:
+        updatesdisabled: false
+        provider: kvm
         nodes: 1
         pool: masters
-        provider: kvm
-        updatesdisabled: false
+      kubeconfig: null
       networking:
         dnsdomain: cluster.orbitertest
         network: calico
-        podcidr: 100.127.224.0/20
         servicecidr: 100.126.4.0/22
+        podcidr: 100.127.224.0/20
+      verbose: false
       versions:
         kubernetes: v1.17.0
         orbiter: v0.15.2
         boom: v0.9.19
       workers:
-      - nodes: 1
-        pool: workers
+      - updatesdisabled: false
         provider: kvm
-        updatesdisabled: false
+        nodes: 1
+        pool: workers
 providers:
   kvm:
     kind: orbiter.caos.ch/StaticProvider
     version: v0
     spec:
+      verbose: false
+      remoteuser: orbiter
+      remotepublickeypath: /home/orbiter/.ssh/authorized_keys
       pools:
         masters:
-        - ip: 172.17.0.2
-          id: first
+        - id: first
           hostname: master01
+          ip: 172.17.0.2
         workers:
-        - ip: 172.17.0.3
-          id: second
+        - id: second
           hostname: worker01
-      remotepublickeypath: /home/orbiter/.ssh/authorized_keys
-      remoteuser: orbiter
+          ip: 172.17.0.3
+      keys:
+        bootstrapkeyprivate:
+          encryption: AES256
+          encoding: Base64
+          value: 9X36NrXZQ8odkTVfp5qFxgWv_zsjhP1-x4bttQRuTRKOhWvPmBool6WiLfl5W7M8HTlh-BobYWa4HdN-hVei3dI_mvPgbQaq4yLDikdre5_yPiV9fOKXjhCkkJGRhy-R8VzYBsjIAy_Fs3Y-RVDIItvcoH8d57_S6nnQq0h-bYmyjJA8RsA_pb33gsTY49-t_y3neZT8Zg1cy6JkUU1RIwyoAmkqvue3Oehuq6ttTdNl3sVLhPlyTrn74PkAfKELWJkdHjaeoOLIXPR7M7_0uTmVlBdAOJmHOso27WXKLzOqRwgXdNiL01PbRklU4_NRwwj9qiNwbxZV_3muSvVrNa87Exkfibhjw18qUeYAHPJDKJlNmNKcFk0UKPvhQTvD2zM-HvoYJn3VmwJfIfsSdPlIierYFJ0FZ2QS2aFOoGOg5FWvFd-66OCAfFeONDJhFRyjhBz9pwUrrq9_BuKtXMXGN3UtIbLflw-P0m-SAs91OIIy922gFf6wxM8Wmk0ph2oVAztojeEh_KmMIguYsjiWse5T2QFLEmVWNPjMwMpiojzFPDfCHDJb3xAhkWvZkvweIMgOmUuLVXPTYZjLknoHaElBBr93eDkwyqKsvxycM4hPwx_tzGQv9M8ffc_-CQlrVnaoS5FjrT1r9A0_WxbVhTyk7OIGwQpqWDvEYQ27Ve5LER7N7Vi0oVTxYSqO6UBVdPRVRaIc-LVriu40SlhbI0MwKl2ff9dR-j6vnNKsKL4PHyUxR8nSVtkOwbwfultseQmAbWe-I3n47C4IS_2DSKjAgsPJlSM45AskHfuuDfYQqO97tRf0-q2kHlXa7MDu33JC2GBrhw-_6B7Tf7PjNQ1C3_7fmMF96ReGsuXzPLy0OOIVWAGpMOkVJNGc3abpQo-vKxjjnRwlXf3CmpdVUWbgbnvFMW1lc8ANBcslzZ9clg1OhLvITmY3ip9GNb7MekYowbqFJhnLjpcFnelouejiXHIHCcqFNSoI5QeK2co8RMcy3NmaLpmR64x7RQwFbjebFVjD_ZpV6UQXlQGPknCc3wD5KLyhmM3IEoJaD2_lIgl4Ww-PZdRos6peZhEa-K_esIkAxQLfy2o381TvfXeVx350RTFIxX8DvlpeeMQ9I74myh10ud3EyNT-gUSZ0Y8WmPZDmAdS2gh8L-6i0Ir8o4GOR1CKiPWl-98zSq73drWeSnz-u1d9XCJRBhnoyPSG9ycQAsI7zYC59U6FdOqJGENwjdbjqFSk1s9uPub6fv2kGdqwSD2Ds77BUx9PFV8ZdSqiH_UEKqRVVmwESQXSXWlJOW404X2BfAlydepi-mKHypgw8fxR_-iII6ZU4cTKRGG0jIsK7vy-_110Tde1H2TnrM2QXbwu5_6ieDrZ84eLZO0qDyiMXgyLQYDFa6MV6UywyvPvst-jIHeYM4nEuKbZHa-j9m3tzohKkYxbEcaKdb6YSK1klhu7cPtpuDuW2g20S5xXL478UW5t9xGCuQpcDTBgCs4tir_5zApLhCB1XrkFzqfqy1R3UP1A9DIMCW3YkwP_PHqg5cWNYDeNcWISHtbwqWtneSnPoUAQojXsESPID58XvfTev21T79jwjuLi7FJYSC1hGyedI1vZTdbraaz9cm6wtP42KmXQ1CRFE_LXaOcPPL8O9AE_XkVg1Ac4lP0O7yBH3VN1R5iVMXLZTNTH8DfrcA8PTgAAiLqVcEFlCS8u7Yj_vBlQVuMhxXuZPaLyb2Hzh0DxousyCLBTabRypZxWY18mAViu-0Y5GtOInmVZvMC_W349e5D6sA3iC12qggGWIvzg7ByBawa88R9rttUmYoKXde8tHxDtkFzaTfRssDvM_-0Ty-76T7MCZd3faxBHwCxBy4sGXLP3WHzynkl4a_rXBASQ71lw5uLxVsytUlcOw8xfTFAQz_fipxPhFXRf5iwBwh8ZlACIPiVA78IJvqp44U9wli0gWCJrGe5YYYqvUSha9HMvYMmmDz6jJngiQfwF2WgYWCKqS0OSY1UnKCPuM5pXFEPVxMmxzjXwXUy5P694lCPUNb447ufZMbNCQPW5J7fma-MMYZENrBLUYlFw9TeJpjLXMCYXH80mPuwxO6P1QuPzt6-JsA_3LFb57aD2Ini_Rw_ULucOtPlZVSNjSCIRgHG_v9GmXDS3sd4onn7eCl1Zgi4--pUeqq4SjjpgOnAUu9JtMrvI65_UYMtzpdriJzmCy65NCSfARHCmBvf6gtGc5hVrnAwOcERayFM0LdqVSN-xJy0S3ouxWhzYhexKgaEZtHwO7nSFnjx8B3vUqd0WTl63fuJOHTt92p6jXYJ7XcB2Thq9v9Areu2HazzDgcXMUD7Of-NHT1aOUyk0LqI11xSMUXRq3NnvNr8tYbVMOfPpc4Zwe5vmycNOhQKSfKrs0SWo0Jml93BvaTzmHasOQdq54raTsWlGVMFmdPEGOuV9hTs3CrxVR4hVn8d_DNpw5hGKD2SpFNhVaUz4xZDnJoEcLRhAENuKo9_cd-vCAX_-rI67InDErnIyX1S9VFDzznfJu1oZNFWyW8NojECETOQIZ5izW0jtB3s4ImiAnQxUjD5ndWsviN0-MBeUOTNzpKjSc0WGZTbnjvJxoWdUV-ouIomYHO7-iUKMf8ZBucHPukg-Wvn63FGb0l6Mq41fruZQ6hvMIYGKBexb3hqgwgXz381StDBsSjBrt7UJFEYxJ3GjTkHDJ07Wng2spJW_QLVgy1fNmu560Fb57TQW-4o0f28eSBqpbtw75THZ1u_xKodvdJGUKcCiq4hL-CA6bzRRPn3SBHG1MH9XGi-LRj9eWegOR7SwBuhbr7BsqRv961wNWfsAsn2daJ9iG6LRz6xfVHIu-Hl2UdDSNUhnYkTv1NAK-tEXuiv3mFkdUwEB-9zHMLQspCl92eVD7V5nc-VsCaXk8LaExv0O9a04Bo6ZfVI54oFSbGiX6pyQzBmiim9ANYuAsv_o4bCjv4BRnMJOv6pyl3KVbpkFldu-24LB3MiIct95rM8aowr3t0f9BSf_sTVF6GntEh9UKfwjcrjfh5YnaIFBJjN2vBp6sUJJYLpEjpN2FWJjfUTfQKJaOPO5SDtd6r8yzFHPuVv_9h0NLWlM2_8yqy_ncj1XpHy-IijWB4kb5cdEYE_WjzVdlzsSpzen5LAc6HPWZ-Knv3q23Ubg9gNCPUws9KGmt63cNauVrLZ_5Q1mWzjDnOZRFaGUsFAktdo-XREFwJVqeH66Ew0G9Y8W2unsqWCih1pZSirXNJyanHkWU1Wd3C-I10XDVRBRBxdmUL_QX-O4aoNIujS0tKiRjnCF77WTIQOTjzuv5uV84JYhh_b4bGGzIcY3nFQSoS8Av91os2_efVOX8ge5jp0aQ_a19Ujtf9J-emGsBrfTjbhuLUTmqyUR_IgymrLL9jkMkZJvpQ1Ix9paDNUDsujhYUGapqz0lWqxXMaiWI-XB0UyodZ7wWraFo-7M_vvzjb0LcphFyRBE_KxFyKwAbNgaJ82WJU0uUprv5XERcEunxlDL2g7vRajwyUgi1BPM5yPtyMnwtNorQB_kfW2xaFvcw07TvWoTGwll1ZJoTvtJKyHKSsFCIQZYo-oaiIKSJUk0cfVT50OIZwcVLDwNQz0VKpEDX_oursUFItADX5XLRfxcBF9pszdUyetGtgHUoCSNs2iirWKIpYFU_7kAPgE5TcXDo7imJ4UJt9QgJ5Oz3GOaD9bth6b5wXNv0wE-Q0vGAWTpKhpvy-a0kIfBMCIsX8Cxe58bWEkI4LC_rwp_lDwl-6SOd2AgFuprbPX7aHQ4YzsXvG9zADo0-IAlQnXn36mpVaUrV-x74vJ5m_JWz4NkH9XEtpoYmvXt2PbJ0RwMGF7pyJbjXUUCZBLmMk_51y8DF8Ma0CKdLGN4_0hLG2xptXftDMGwLy7cTULeuhn8wMgAAjnj70yKciGkSWOV7HwPupNpBNNsK7FbiVvtvveeIl-U6movEVpozUtZIthfae-HBSfdcEynqffOzr_tNeyHQGyETeEThfdODB78E9fzpXFdl38CQTENie-0EWIvReGLp6Uw_-Rzo1Dob1E4T7YSq3eWZO4qldoZubd_TZmClVyI2Mifg6XXfzh9KdQfgsVEZGIcZQRj38OCMSLXcxqsiP8MNzNfR1qNUa4Shl1PGJTGehL_X56dRmUElRX1Gus-95_eTsUZ2IbUuuiOlv7iuoh3nXD6T9yzHdD_c_fR25H-HO0eFazOe8nofAKs2vPsagLQWV-CZPSzBqVmKTo_Kbqpez31gMjGYN2CLPWbWyKUhHd7nYD-x4sNbdBr5SUHFpcehlMVyYoaChz_O3zkcwkePvNzUx-z0XclD0y2fVrVIGkDjpWtbymZ_Hj3vxnI6ZDUKScOSP-_JkOwZGACXxKmKcD3zkWG_E6qBOp9QDcUWu0peB5d5qZjUdkMxvUYXHMCh-dNkuxuHo5z0LxP2aAJ2XBJuynAGCkpJtfGLsyitXwipMQaIIRx2WUlWRBOE5FToiPs6cK
+        bootstrapkeypublic: null
+        maintenancekeyprivate: null
+        maintenancekeypublic: null
     loadbalancing:
       kind: orbiter.caos.ch/DynamicLoadBalancer
       version: v0
@@ -50,12 +63,12 @@ providers:
           - name: kubeapi
             sourceport: 6443
             destinations:
-            - pool: masters
-              port: 6443
-              healthchecks:
-                code: 200
-                path: /healthz
+            - healthchecks:
                 protocol: https
+                path: /healthz
+                code: 200
+              port: 6443
+              pool: masters
         workers:
         - ip: 172.17.0.103
           transport:
