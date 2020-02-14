@@ -1,0 +1,72 @@
+kind: nodeagent.caos.ch/NodeAgents
+version: v0
+spec:
+  commit: 9b000b26df1226439ec890417ac0abcfb7df925b
+  nodeagents:
+    first:
+      changesallowed: true
+      software:
+        swap:
+          version: disabled
+        kubelet:
+          version: v1.17.0
+        kubeadm:
+          version: v1.17.0
+        kubectl:
+          version: v1.17.0
+        containerruntime:
+          version: docker-ce v19.03.5
+      firewall:
+        calico-bgp:
+          port: "179"
+          protocol: tcp
+        etcd:
+          port: 2379-2380
+          protocol: tcp
+        kube-controller:
+          port: "10252"
+          protocol: tcp
+        kube-scheduler:
+          port: "10251"
+          protocol: tcp
+        kubeapi-6443-dest:
+          port: "6443"
+          protocol: tcp
+        kubeapi-6443-src:
+          port: "6443"
+          protocol: tcp
+        kubeapi-external:
+          port: "6443"
+          protocol: tcp
+        kubeapi-internal:
+          port: "6666"
+          protocol: tcp
+        kubelet:
+          port: "10250"
+          protocol: tcp
+    second:
+      changesallowed: true
+      software:
+        swap:
+          version: disabled
+        kubelet:
+          version: v1.17.0
+        kubeadm:
+          version: v1.17.0
+        kubectl:
+          version: v1.17.0
+        containerruntime:
+          version: docker-ce v19.03.5
+      firewall:
+        httpingress-80-src:
+          port: "80"
+          protocol: tcp
+        httpingress-30080-dest:
+          port: "30080"
+          protocol: tcp
+        httpsingress-443-src:
+          port: "443"
+          protocol: tcp
+        httpsingress-30443-dest:
+          port: "30443"
+          protocol: tcp

@@ -1,0 +1,27 @@
+kind: orbiter.caos.ch/Orb
+version: v0
+clusters:
+  k8s:
+    kind: orbiter.caos.ch/KubernetesCluster
+    version: v0
+    current:
+      status: ""
+      computes: {}
+providers:
+  kvm:
+    kind: orbiter.caos.ch/StaticProvider
+    version: v0
+    current:
+      pools:
+        masters: {}
+        workers: {}
+      ingresses:
+        httpingress:
+          location: 172.17.0.103
+          port: 80
+        httpsingress:
+          location: 172.17.0.103
+          port: 443
+        kubeapi:
+          location: 172.17.0.102
+          port: 6443
