@@ -34,8 +34,8 @@ providers:
     version: v0
     spec:
       verbose: false
-      remoteuser: root
-      remotepublickeypath: /home/root/.ssh/authorized_keys
+      remoteuser: lauch
+      remotepublickeypath: /home/lauch/.ssh/authorized_keys
       pools:
         masters:
         - id: first
