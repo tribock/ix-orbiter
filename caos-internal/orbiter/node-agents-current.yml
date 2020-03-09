@@ -96,6 +96,49 @@ current:
         version: v1.17.0
       containerruntime:
         version: docker-ce v19.03.5
+      keepalived:
+        config:
+          keepalived.conf: |+
+            global_defs {
+            	enable_script_security
+            	script_user tribock
+            }
+
+            vrrp_sync_group VG1 {
+            	group {
+                    VI_0
+                }
+            }
+
+            vrrp_script chk_13.95.123.109 {
+            	script       "/usr/local/bin/health 200@http://127.0.0.1:29999/ready"
+            	interval 2   # check every 2 seconds
+            	fall 15      # require 2 failures for KO
+            	rise 2       # require 2 successes for OK
+            }
+
+            vrrp_instance VI_0 {
+            	state MASTER
+            	unicast_src_ip 13.95.123.109
+            	unicast_peer {
+            		    }
+            	interface eth0
+            	virtual_router_id 55
+            	advert_int 1
+            	authentication {
+            		auth_type PASS
+            		auth_pass [ REDACTED ]
+            	}
+            	track_script {
+            		chk_13.95.123.109
+            	}
+
+            	virtual_ipaddress {
+            		13.95.123.109
+            	}
+
+            }
+
       hostname:
         config:
           hostname: worker01
