@@ -7,6 +7,14 @@ clusters:
     current:
       status: maintaining
       machines:
+        k8s-orb-0:
+          joined: false
+          online: false
+          firewallisready: true
+          nodeagentisrunning: true
+          tier: controlplane
+          provider: kvm
+          pool: masters
         k8s-orb-1:
           joined: false
           online: false
