@@ -6,6 +6,8 @@ current:
     software:
       swap:
         version: disabled
+      containerruntime:
+        version: docker-ce v19.03.5
       keepalived:
         config:
           keepalived.conf: |+
