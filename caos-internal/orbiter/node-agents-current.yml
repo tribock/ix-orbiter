@@ -6,17 +6,65 @@ current:
     software:
       swap:
         version: disabled
-      kubelet:
-        config:
-          selinux: enforcing
       keepalived:
         config:
-          selinux: enforcing
-      sshd:
-        config:
-          gssapiauthentication: yes
+          keepalived.conf: |+
+            global_defs {
+            	enable_script_security
+            	script_user tribock
+            }
+
+            vrrp_sync_group VG1 {
+            	group {
+                    VI_0
+                }
+            }
+
+            vrrp_script chk_52.233.194.215 {
+            	script       "/usr/local/bin/health 200@http://127.0.0.1:29999/ready"
+            	interval 2   # check every 2 seconds
+            	fall 15      # require 2 failures for KO
+            	rise 2       # require 2 successes for OK
+            }
+
+            vrrp_instance VI_0 {
+            	state MASTER
+            	unicast_src_ip 52.233.194.215
+            	unicast_peer {
+            		    }
+            	interface eth0
+            	virtual_router_id 55
+            	advert_int 1
+            	authentication {
+            		auth_type PASS
+            		auth_pass [ REDACTED ]
+            	}
+            	track_script {
+            		chk_52.233.194.215
+            	}
+
+            	virtual_ipaddress {
+            		52.233.194.215
+            	}
+
+            }
+
       hostname:
         config:
-          hostname: k8s-orb-0
-    open: []
+          hostname: master01
+    open:
+    - port: "6443"
+      protocol: tcp
+    - port: "6666"
+      protocol: tcp
+    - port: "10250"
+      protocol: tcp
+    - port: "179"
+      protocol: tcp
+    - port: "10252"
+      protocol: tcp
+    - port: 2379-2380
+      protocol: tcp
+    - port: "10251"
+      protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
