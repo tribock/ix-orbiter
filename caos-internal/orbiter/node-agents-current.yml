@@ -98,7 +98,7 @@ current:
         version: docker-ce v19.03.5
       hostname:
         config:
-          hostname: worker01.internal.cloudapp.net
+          hostname: worker01
     open:
     - port: "30443"
       protocol: tcp
