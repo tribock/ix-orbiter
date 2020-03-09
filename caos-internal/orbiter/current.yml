@@ -5,24 +5,8 @@ clusters:
     kind: orbiter.caos.ch/KubernetesCluster
     version: v0
     current:
-      status: maintaining
-      machines:
-        k8s-orb-0:
-          joined: true
-          online: false
-          firewallisready: true
-          nodeagentisrunning: true
-          tier: controlplane
-          provider: kvm
-          pool: masters
-        k8s-orb-1:
-          joined: false
-          online: false
-          firewallisready: true
-          nodeagentisrunning: true
-          tier: workers
-          provider: kvm
-          pool: workers
+      status: running
+      machines: {}
 providers:
   kvm:
     kind: orbiter.caos.ch/StaticProvider
@@ -36,5 +20,5 @@ providers:
           location: 13.95.123.109
           port: 443
         kubeapi:
-          location: 52.233.194.215
-          port: 6443
+          location: 137.117.254.12
+          port: 443
