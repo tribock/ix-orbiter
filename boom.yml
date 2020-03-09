@@ -36,9 +36,9 @@ spec:
         storeName: "store"
   prometheus:
     deploy: true
-    storage:
-      size: 5Gi
-      storageClass: standard
+    # storage:
+    #   size: 5Gi
+    #   storageClass: standard
   loki:
     deploy: true
     # storage:
