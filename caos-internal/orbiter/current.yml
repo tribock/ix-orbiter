@@ -18,7 +18,7 @@ clusters:
         k8s-orb-1:
           joined: false
           online: false
-          firewallisready: false
+          firewallisready: true
           nodeagentisrunning: true
           tier: workers
           provider: kvm
