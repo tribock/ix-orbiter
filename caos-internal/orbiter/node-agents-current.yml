@@ -167,3 +167,22 @@ current:
     - port: "443"
       protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
+  k8s-orb-3:
+    ready: false
+    software:
+      swap:
+        version: disabled
+      kubelet:
+        config:
+          selinux: enforcing
+      keepalived:
+        config:
+          selinux: enforcing
+      sshd:
+        config:
+          gssapiauthentication: yes
+      hostname:
+        config:
+          hostname: k8s-orb-3
+    open: []
+    commit: 48e0d919722b814707be9dac317017ed5203bf85
