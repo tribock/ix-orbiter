@@ -17,9 +17,9 @@ clusters:
           pool: workers
         k8s-orb-3:
           joined: true
-          online: false
+          online: true
           firewallisready: true
-          nodeagentisrunning: true
+          nodeagentisrunning: false
           tier: controlplane
           provider: kvm
           pool: masters
