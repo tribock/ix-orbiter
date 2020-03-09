@@ -8,7 +8,7 @@ clusters:
       status: maintaining
       machines:
         k8s-orb-1:
-          joined: false
+          joined: true
           online: false
           firewallisready: true
           nodeagentisrunning: true
