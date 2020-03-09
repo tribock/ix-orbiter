@@ -16,7 +16,7 @@ clusters:
           provider: kvm
           pool: workers
         k8s-orb-3:
-          joined: false
+          joined: true
           online: false
           firewallisready: true
           nodeagentisrunning: true
