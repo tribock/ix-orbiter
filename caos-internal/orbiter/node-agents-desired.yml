@@ -214,7 +214,7 @@ spec:
                   }
               }
 
-              vrrp_script chk_137.117.254.12 {
+              vrrp_script chk_172.16.1.7 {
               	script       "/usr/local/bin/health 200@http://127.0.0.1:29999/ready"
               	interval 2   # check every 2 seconds
               	fall 15      # require 2 failures for KO
@@ -234,11 +234,11 @@ spec:
               		auth_pass [ REDACTED ]
               	}
               	track_script {
-              		chk_137.117.254.12
+              		chk_172.16.1.7
               	}
 
               	virtual_ipaddress {
-              		137.117.254.12
+              		172.16.1.7
               	}
 
               }
@@ -247,7 +247,7 @@ spec:
           config:
             nginx.conf: "events {\n\tworker_connections  4096;  ## Default: 1024\n}\n\nstream
               { \n\tupstream kubeapi {    \n\t\tserver 137.117.254.12:6666; # masters\n\t}\n\tserver
-              {\n\t\tlisten 137.117.254.12:443;\n\t\tproxy_pass kubeapi;\n\t}\n}\n\nhttp
+              {\n\t\tlisten 172.16.1.7:443;\n\t\tproxy_pass kubeapi;\n\t}\n}\n\nhttp
               {\n\tserver {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn
               200;\n\t\t}\n\t}\n}\n"
         hostname:

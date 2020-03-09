@@ -36,5 +36,5 @@ providers:
           location: 13.95.123.109
           port: 443
         kubeapi:
-          location: 137.117.254.12
+          location: 172.16.1.7
           port: 443
