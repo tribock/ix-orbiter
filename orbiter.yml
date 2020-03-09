@@ -70,7 +70,7 @@ providers:
       version: v0
       spec:
         masters:
-        - ip: 137.117.254.12
+        - ip: 172.16.1.7
           transport:
           - name: kubeapi
             sourceport: 443
