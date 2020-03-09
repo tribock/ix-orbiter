@@ -168,7 +168,7 @@ current:
       protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
   k8s-orb-3:
-    ready: true
+    ready: false
     software:
       swap:
         version: disabled
@@ -227,9 +227,8 @@ current:
         config:
           nginx.conf: "events {\n\tworker_connections  4096;  ## Default: 1024\n}\n\nstream
             { \n\tupstream kubeapi {    \n\t\tserver 137.117.254.12:6666; # masters\n\t}\n\tserver
-            {\n\t\tlisten 137.117.254.12:443;\n\t\tproxy_pass kubeapi;\n\t}\n}\n\nhttp
-            {\n\tserver {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn
-            200;\n\t\t}\n\t}\n}\n"
+            {\n\t\tlisten 0.0.0.0:443;\n\t\tproxy_pass kubeapi;\n\t}\n}\n\nhttp {\n\tserver
+            {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn 200;\n\t\t}\n\t}\n}\n"
       hostname:
         config:
           hostname: master01
