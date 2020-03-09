@@ -49,6 +49,13 @@ current:
 
             }
 
+      nginx:
+        config:
+          nginx.conf: "events {\n\tworker_connections  4096;  ## Default: 1024\n}\n\nstream
+            { \n\tupstream kubeapi {    \n\t\tserver 52.233.194.215:6666; # masters\n\t}\n\tserver
+            {\n\t\tlisten 52.233.194.215:6443;\n\t\tproxy_pass kubeapi;\n\t}\n}\n\nhttp
+            {\n\tserver {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn
+            200;\n\t\t}\n\t}\n}\n"
       hostname:
         config:
           hostname: master01
