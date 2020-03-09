@@ -38,9 +38,9 @@ providers:
       remotepublickeypath: /home/tribock/.ssh/authorized_keys
       pools:
         masters:
-        - id: k8s-orb-0
+        - id: k8s-orb-3
           hostname: master01
-          ip: 52.233.194.215
+          ip: 137.117.254.12
         workers:
         - id: k8s-orb-1
           hostname: worker01
@@ -67,16 +67,16 @@ providers:
       version: v0
       spec:
         masters:
-        - ip: 52.233.194.215
+        - ip: 137.117.254.12
           transport:
           - name: kubeapi
-            sourceport: 6443
+            sourceport: 443
             destinations:
             - healthchecks:
                 protocol: https
                 path: /healthz
                 code: 200
-              port: 6443
+              port: 443
               pool: masters
         workers:
         - ip: 13.95.123.109
