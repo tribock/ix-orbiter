@@ -19,7 +19,7 @@ clusters:
           joined: true
           online: true
           firewallisready: true
-          nodeagentisrunning: false
+          nodeagentisrunning: true
           tier: controlplane
           provider: kvm
           pool: masters
