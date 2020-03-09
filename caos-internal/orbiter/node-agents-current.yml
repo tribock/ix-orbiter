@@ -8,6 +8,8 @@ current:
         version: disabled
       kubelet:
         version: v1.17.0
+      kubeadm:
+        version: v1.17.0
       kubectl:
         version: v1.17.0
       containerruntime:
