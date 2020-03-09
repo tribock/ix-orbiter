@@ -34,17 +34,20 @@ providers:
     version: v0
     spec:
       verbose: false
-      remoteuser: lauch
-      remotepublickeypath: /home/lauch/.ssh/authorized_keys
+      remoteuser: tribock
+      remotepublickeypath: /Users/tribock/.ssh/authorized_keys
       pools:
         masters:
-        - id: first
+        - id: k8s-orb-0
           hostname: master01
-          ip: 10.10.10.197
+          ip: 52.233.194.215
         workers:
-        - id: second
+        - id: k8s-orb-1
           hostname: worker01
-          ip: 10.10.10.198
+          ip: 13.95.123.109
+        - id: k8s-orb-2
+          hostname: worker02
+          ip: 52.178.1.111
       keys:
         bootstrapkeyprivate:
           encryption: AES256
