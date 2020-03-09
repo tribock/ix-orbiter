@@ -6,6 +6,8 @@ current:
     software:
       swap:
         version: disabled
+      kubelet:
+        version: v1.17.0
       containerruntime:
         version: docker-ce v19.03.5
       keepalived:
