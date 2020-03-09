@@ -6,7 +6,15 @@ clusters:
     version: v0
     current:
       status: running
-      machines: {}
+      machines:
+        k8s-orb-0:
+          joined: false
+          online: false
+          firewallisready: false
+          nodeagentisrunning: false
+          tier: controlplane
+          provider: kvm
+          pool: masters
 providers:
   kvm:
     kind: orbiter.caos.ch/StaticProvider
