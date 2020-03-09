@@ -194,7 +194,7 @@ current:
                 }
             }
 
-            vrrp_script chk_137.117.254.12 {
+            vrrp_script chk_172.16.1.7 {
             	script       "/usr/local/bin/health 200@http://127.0.0.1:29999/ready"
             	interval 2   # check every 2 seconds
             	fall 15      # require 2 failures for KO
@@ -214,11 +214,11 @@ current:
             		auth_pass [ REDACTED ]
             	}
             	track_script {
-            		chk_137.117.254.12
+            		chk_172.16.1.7
             	}
 
             	virtual_ipaddress {
-            		137.117.254.12
+            		172.16.1.7
             	}
 
             }
