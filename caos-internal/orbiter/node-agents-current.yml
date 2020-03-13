@@ -2,7 +2,7 @@ kind: nodeagent.caos.ch/NodeAgents
 version: v0
 current:
   k8s-orb-0:
-    ready: true
+    ready: false
     software:
       swap:
         version: disabled
