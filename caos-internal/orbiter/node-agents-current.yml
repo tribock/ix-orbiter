@@ -71,29 +71,21 @@ current:
         config:
           hostname: worker02
     open:
-    - port: "6443"
-      protocol: tcp
-    - port: "6666"
-      protocol: tcp
-    - port: "10250"
-      protocol: tcp
-    - port: "179"
-      protocol: tcp
-    - port: "10252"
-      protocol: tcp
-    - port: 2379-2380
-      protocol: tcp
-    - port: "10251"
-      protocol: tcp
-    - port: "443"
-      protocol: tcp
-    - port: "80"
+    - port: "30080"
       protocol: tcp
     - port: "30080"
       protocol: tcp
-    - port: "30443"
+    - port: "30080"
       protocol: tcp
-    - port: 30000-32767
+    - port: "30080"
+      protocol: tcp
+    - port: "30080"
+      protocol: tcp
+    - port: "30080"
+      protocol: tcp
+    - port: "30080"
+      protocol: tcp
+    - port: "30080"
       protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
   k8s-orb-1:
