@@ -74,6 +74,9 @@ spec:
           config:
             hostname: worker02
       firewall:
+        calico-bgp:
+          port: "179"
+          protocol: tcp
         httpingress-80-src:
           port: "80"
           protocol: tcp
@@ -85,6 +88,12 @@ spec:
           protocol: tcp
         httpsingress-30443-dest:
           port: "30443"
+          protocol: tcp
+        kubelet:
+          port: "10250"
+          protocol: tcp
+        node-ports:
+          port: 30000-32767
           protocol: tcp
     k8s-orb-1:
       changesallowed: true
