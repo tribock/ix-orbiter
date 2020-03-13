@@ -7,6 +7,14 @@ clusters:
     current:
       status: running
       machines:
+        k8s-orb-0:
+          joined: false
+          online: false
+          firewallisready: false
+          nodeagentisrunning: false
+          tier: workers
+          provider: kvm
+          pool: workers
         k8s-orb-1:
           joined: true
           online: true
