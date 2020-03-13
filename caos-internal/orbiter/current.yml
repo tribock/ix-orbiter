@@ -9,7 +9,7 @@ clusters:
       machines:
         k8s-orb-0:
           joined: true
-          online: false
+          online: true
           firewallisready: true
           nodeagentisrunning: true
           tier: workers
