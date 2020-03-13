@@ -29,7 +29,7 @@ clusters:
       workers:
       - updatesdisabled: false
         provider: kvm
-        nodes: 1
+        nodes: 2
         pool: workers
 providers:
   kvm:
@@ -48,9 +48,9 @@ providers:
         - id: k8s-orb-1
           hostname: worker01
           ip: 13.95.123.109
-        # - id: k8s-orb-0
-        #   hostname: worker02
-        #   ip: 52.233.194.215
+        - id: k8s-orb-0
+          hostname: worker02
+          ip: 52.233.194.215
       keys:
         bootstrapkeyprivate:
           encryption: AES256
