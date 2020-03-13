@@ -29,7 +29,7 @@ clusters:
       workers:
       - updatesdisabled: false
         provider: kvm
-        nodes: 2
+        nodes: 1
         pool: workers
 providers:
   kvm:
