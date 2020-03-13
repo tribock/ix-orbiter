@@ -63,10 +63,10 @@ current:
           nginx.conf: "events {\n\tworker_connections  4096;  ## Default: 1024\n}\n\nstream
             { \n\tupstream httpsingress {    \n\t\tserver 13.95.123.109:30443; # workers\n\t\tserver
             52.233.194.215:30443; # workers\n\t}\n\tserver {\n\t\tlisten 13.95.123.109:443;\n\t\tproxy_pass
-            httpsingress;\n\t}\n\n\tupstream httpingress {    \n\t\tserver 52.233.194.215:30080;
-            # workers\n\t}\n\tserver {\n\t\tlisten 13.95.123.109:80;\n\t\tproxy_pass
-            httpingress;\n\t}\n}\n\nhttp {\n\tserver {\n\t\tlisten 29999;\n\n\t\tlocation
-            /ready {\n\t\t\treturn 200;\n\t\t}\n\t}\n}\n"
+            httpsingress;\n\t}\n\n\tupstream httpingress {    \n\t\tserver 13.95.123.109:30080;
+            # workers\n\t\tserver 52.233.194.215:30080; # workers\n\t}\n\tserver {\n\t\tlisten
+            13.95.123.109:80;\n\t\tproxy_pass httpingress;\n\t}\n}\n\nhttp {\n\tserver
+            {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn 200;\n\t\t}\n\t}\n}\n"
       hostname:
         config:
           hostname: worker02
