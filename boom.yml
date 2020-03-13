@@ -11,19 +11,19 @@ spec:
     deploy: false
     folder: postapply
   prometheus-operator:
-    deploy: true
+    deploy: false
   logging-operator:
-    deploy: true
+    deploy: false
   prometheus-node-exporter:
-    deploy: true
+    deploy: false
   grafana:
-    deploy: true
+    deploy: false
   ambassador:
-    deploy: true
+    deploy: false
     service:
       type: LoadBalancer
   kube-state-metrics:
-    deploy: true
+    deploy: false
   argocd:
     deploy: false
     customImage:
@@ -35,12 +35,12 @@ spec:
       - directory: "directory"
         storeName: "store"
   prometheus:
-    deploy: true
+    deploy: false
     # storage:
     #   size: 5Gi
     #   storageClass: standard
   loki:
-    deploy: true
+    deploy: false
     # storage:
     #   size: 5Gi
     #   storageClass: standard
