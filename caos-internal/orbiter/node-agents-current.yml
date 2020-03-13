@@ -2,7 +2,7 @@ kind: nodeagent.caos.ch/NodeAgents
 version: v0
 current:
   k8s-orb-0:
-    ready: false
+    ready: true
     software:
       swap:
         version: disabled
@@ -70,21 +70,19 @@ current:
         config:
           hostname: worker02
     open:
-    - port: "30080"
+    - port: "10250"
+      protocol: tcp
+    - port: "179"
+      protocol: tcp
+    - port: "443"
+      protocol: tcp
+    - port: "80"
       protocol: tcp
     - port: "30080"
       protocol: tcp
-    - port: "30080"
+    - port: "30443"
       protocol: tcp
-    - port: "30080"
-      protocol: tcp
-    - port: "30080"
-      protocol: tcp
-    - port: "30080"
-      protocol: tcp
-    - port: "30080"
-      protocol: tcp
-    - port: "30080"
+    - port: 30000-32767
       protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
   k8s-orb-1:
