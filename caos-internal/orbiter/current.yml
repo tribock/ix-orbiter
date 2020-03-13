@@ -11,7 +11,7 @@ clusters:
           joined: false
           online: false
           firewallisready: false
-          nodeagentisrunning: false
+          nodeagentisrunning: true
           tier: workers
           provider: kvm
           pool: workers
