@@ -28,7 +28,7 @@ current:
                 }
             }
 
-            vrrp_script chk_52.233.194.215 {
+            vrrp_script chk_13.95.123.109 {
             	script       "/usr/local/bin/health 200@http://127.0.0.1:29999/ready"
             	interval 2   # check every 2 seconds
             	fall 15      # require 2 failures for KO
@@ -36,9 +36,10 @@ current:
             }
 
             vrrp_instance VI_0 {
-            	state MASTER
+            	state BACKUP
             	unicast_src_ip 52.233.194.215
             	unicast_peer {
+            		13.95.123.109
             		    }
             	interface eth0
             	virtual_router_id 55
@@ -48,11 +49,11 @@ current:
             		auth_pass [ REDACTED ]
             	}
             	track_script {
-            		chk_52.233.194.215
+            		chk_13.95.123.109
             	}
 
             	virtual_ipaddress {
-            		52.233.194.215
+            		13.95.123.109
             	}
 
             }
@@ -60,13 +61,15 @@ current:
       nginx:
         config:
           nginx.conf: "events {\n\tworker_connections  4096;  ## Default: 1024\n}\n\nstream
-            { \n\tupstream kubeapi {    \n\t\tserver 52.233.194.215:6666; # masters\n\t}\n\tserver
-            {\n\t\tlisten 52.233.194.215:6443;\n\t\tproxy_pass kubeapi;\n\t}\n}\n\nhttp
-            {\n\tserver {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn
-            200;\n\t\t}\n\t}\n}\n"
+            { \n\tupstream httpsingress {    \n\t\tserver 13.95.123.109:30443; # workers\n\t\tserver
+            52.233.194.215:30443; # workers\n\t}\n\tserver {\n\t\tlisten 13.95.123.109:443;\n\t\tproxy_pass
+            httpsingress;\n\t}\n\n\tupstream httpingress {    \n\t\tserver 13.95.123.109:30080;
+            # workers\n\t\tserver 52.233.194.215:30080; # workers\n\t}\n\tserver {\n\t\tlisten
+            13.95.123.109:80;\n\t\tproxy_pass httpingress;\n\t}\n}\n\nhttp {\n\tserver
+            {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn 200;\n\t\t}\n\t}\n}\n"
       hostname:
         config:
-          hostname: master01
+          hostname: worker02
     open:
     - port: "6443"
       protocol: tcp
@@ -81,6 +84,16 @@ current:
     - port: 2379-2380
       protocol: tcp
     - port: "10251"
+      protocol: tcp
+    - port: "443"
+      protocol: tcp
+    - port: "80"
+      protocol: tcp
+    - port: "30080"
+      protocol: tcp
+    - port: "30443"
+      protocol: tcp
+    - port: 30000-32767
       protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
   k8s-orb-1:

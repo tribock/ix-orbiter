@@ -5,12 +5,12 @@ clusters:
     kind: orbiter.caos.ch/KubernetesCluster
     version: v0
     current:
-      status: maintaining
+      status: running
       machines:
         k8s-orb-0:
-          joined: false
-          online: false
-          firewallisready: false
+          joined: true
+          online: true
+          firewallisready: true
           nodeagentisrunning: true
           tier: workers
           provider: kvm
