@@ -25,7 +25,7 @@ clusters:
       versions:
         kubernetes: v1.17.0
         orbiter: v0.16.1
-        boom: v0.9.24
+        boom: v0.9.25
       workers:
       - updatesdisabled: false
         provider: kvm
