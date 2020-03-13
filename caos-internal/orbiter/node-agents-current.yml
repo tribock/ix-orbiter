@@ -28,7 +28,7 @@ current:
                 }
             }
 
-            vrrp_script chk_52.233.194.215 {
+            vrrp_script chk_13.95.123.109 {
             	script       "/usr/local/bin/health 200@http://127.0.0.1:29999/ready"
             	interval 2   # check every 2 seconds
             	fall 15      # require 2 failures for KO
@@ -36,9 +36,10 @@ current:
             }
 
             vrrp_instance VI_0 {
-            	state MASTER
+            	state BACKUP
             	unicast_src_ip 52.233.194.215
             	unicast_peer {
+            		13.95.123.109
             		    }
             	interface eth0
             	virtual_router_id 55
@@ -48,11 +49,11 @@ current:
             		auth_pass [ REDACTED ]
             	}
             	track_script {
-            		chk_52.233.194.215
+            		chk_13.95.123.109
             	}
 
             	virtual_ipaddress {
-            		52.233.194.215
+            		13.95.123.109
             	}
 
             }
