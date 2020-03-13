@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    ndgit.svc: netshoot
+    app: netshoot
+  name: netshoot
+  namespace: default
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      ndgit.svc: netshoot
+      app: netshoot
+  template:
+    metadata:
+      annotations:
+      creationTimestamp: null
+      labels:
+        ndgit.svc: netshoot
+        app: netshoot
+    spec: 
+      containers:
+      - image: nicolaka/netshoot
+        name: netshoot
+        resources: {}
+        command: ["ping","localhost"]
+      restartPolicy: Always
+status: {}
