@@ -4,6 +4,7 @@ metadata:
   name: caos
   namespace: caos-system
 spec:
+  currentStatePath: caos-internal/boom
   preApply:
     deploy: false
     folder: preapply
@@ -29,11 +30,23 @@ spec:
     customImage:
       enabled: false
       imagePullSecret: github-image
-      gopassGPGKey: "gpg"
-      gopassSSHKey: "ssh"
       gopassStores:
-      - directory: "directory"
-        storeName: "store"
+      - directory: directory
+        storeName: store
+        sshKey:
+          name: "argocd-ssh-config"
+          key: "ssh-boom-test"
+          internalName: "ssh-identity"
+        gpgKey: 
+          name: "argocd-gpg-keys"
+          key: "gpg-boom-test"
+          internalName: "gpg-identity"
+    repositories:
+    - name: boom-test-ops
+      url: git@github.com:tribock/boom-test-ops.git
+      certificateSecret:
+        name: boom-test-ops
+        key: ops-ssh
   prometheus:
     deploy: true
     # storage:
@@ -41,6 +54,7 @@ spec:
     #   storageClass: standard
   loki:
     deploy: true
+    clusterOutput: true
     # storage:
     #   size: 5Gi
     #   storageClass: standard
