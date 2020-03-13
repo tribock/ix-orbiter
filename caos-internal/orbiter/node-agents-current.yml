@@ -67,19 +67,35 @@ current:
         config:
           hostname: master01
     open:
-    - port: "6443"
+    - port: ""
       protocol: tcp
-    - port: "6666"
+    - port: ""
       protocol: tcp
-    - port: "10250"
+    - port: ""
       protocol: tcp
-    - port: "179"
+    - port: ""
       protocol: tcp
-    - port: "10252"
+    - port: ""
       protocol: tcp
-    - port: 2379-2380
+    - port: ""
       protocol: tcp
-    - port: "10251"
+    - port: ""
+      protocol: tcp
+    - port: ""
+      protocol: tcp
+    - port: ""
+      protocol: tcp
+    - port: ""
+      protocol: tcp
+    - port: ""
+      protocol: tcp
+    - port: ""
+      protocol: tcp
+    - port: ""
+      protocol: tcp
+    - port: ""
+      protocol: tcp
+    - port: ""
       protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
   k8s-orb-1:
