@@ -65,7 +65,7 @@ current:
             {\n\t\tlisten 29999;\n\n\t\tlocation /ready {\n\t\t\treturn 200;\n\t\t}\n\t}\n}\n"
       hostname:
         config:
-          hostname: master01
+          hostname: worker02
     open:
     - port: ""
       protocol: tcp
