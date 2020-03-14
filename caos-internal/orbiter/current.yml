@@ -23,14 +23,6 @@ clusters:
           tier: workers
           provider: kvm
           pool: workers
-        k8s-orb-3:
-          joined: true
-          online: true
-          firewallisready: true
-          nodeagentisrunning: true
-          tier: controlplane
-          provider: kvm
-          pool: masters
 providers:
   kvm:
     kind: orbiter.caos.ch/StaticProvider
