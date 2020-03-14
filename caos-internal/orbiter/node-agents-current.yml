@@ -36,9 +36,10 @@ current:
             }
 
             vrrp_instance VI_0 {
-            	state MASTER
+            	state BACKUP
             	unicast_src_ip 52.233.194.215
             	unicast_peer {
+            		13.95.123.109
             		    }
             	interface eth0
             	virtual_router_id 55
