@@ -87,7 +87,7 @@ current:
       protocol: tcp
     commit: 48e0d919722b814707be9dac317017ed5203bf85
   k8s-orb-1:
-    ready: true
+    ready: false
     software:
       swap:
         version: disabled
@@ -124,7 +124,6 @@ current:
             	state MASTER
             	unicast_src_ip 13.95.123.109
             	unicast_peer {
-            		52.233.194.215
             		    }
             	interface eth0
             	virtual_router_id 55
